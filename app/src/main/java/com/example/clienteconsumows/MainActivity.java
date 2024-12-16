@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ConsumirWS() {
-        String url = "http://10.10.12.254:3000/nombre";
+        String url = "http://192.168.1.11:3000/nombre";
         OkHttpClient cliente = new OkHttpClient();
         Request get = new Request.Builder()
                 .url(url)
