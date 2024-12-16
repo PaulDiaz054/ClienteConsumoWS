@@ -2,7 +2,6 @@ package com.example.clienteconsumows;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,23 +18,18 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public class MainActivity extends AppCompatActivity {
-
+public class BioActivity extends AppCompatActivity {
 
     Button btnComunicar, btnRegresar;
     TextView tvRespuesta;
-    String respuesta = "";
-
-
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_bio);
 
         btnComunicar = findViewById(R.id.btnComunicar);
-        tvRespuesta = findViewById(R.id.tvRespuesta);
         btnRegresar = findViewById(R.id.btnRegresar);
+        tvRespuesta = findViewById(R.id.tvRespuesta);
 
         btnComunicar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 ConsumirWS();
             }
         });
+
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ConsumirWS() {
-        String url = "http://192.168.1.11:3000/nombre";
+        String url = "http://192.168.1.11:3000/Paul";
         OkHttpClient cliente = new OkHttpClient();
         Request get = new Request.Builder()
                 .url(url)
@@ -62,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
-                MainActivity.this.runOnUiThread(() ->
+                BioActivity.this.runOnUiThread(() ->
                         tvRespuesta.setText("Error al conectar con el servidor: " + e.toString())
                 );
             }
@@ -73,16 +68,15 @@ public class MainActivity extends AppCompatActivity {
                     if (!response.isSuccessful()) {
                         throw new IOException("Unexpected code " + response);
                     } else {
-                        String respuestaJson = responseBody.string();
-                        JSONArray lista = new JSONArray(respuestaJson);
+                        String respuesta = responseBody.string();
 
-                        MainActivity.this.runOnUiThread(() -> {
-                            tvRespuesta.setText(lista.toString());
+                        BioActivity.this.runOnUiThread(() -> {
+                            tvRespuesta.setText(respuesta);
                         });
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    MainActivity.this.runOnUiThread(() ->
+                    BioActivity.this.runOnUiThread(() ->
                             tvRespuesta.setText("Error al procesar la respuesta del servidor")
                     );
                 }
