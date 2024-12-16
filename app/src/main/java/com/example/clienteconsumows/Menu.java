@@ -39,6 +39,13 @@ public class Menu extends AppCompatActivity {
                 CambiarPantallas(MainActivity.class);
             }
         });
+
+        btnSuma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CambiarPantallas(SumaActivity.class);
+            }
+        });
     }
     public void CambiarPantallas( Class<?> targetActivity) {
         Intent intent = new Intent(Menu.this, targetActivity);

@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -28,7 +26,7 @@ public class BioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bio);
 
         btnComunicar = findViewById(R.id.btnComunicar);
-        btnRegresar = findViewById(R.id.btnRegresar);
+        btnRegresar = findViewById(R.id.btnRegresarSuma);
         tvRespuesta = findViewById(R.id.tvRespuesta);
 
         btnComunicar.setOnClickListener(new View.OnClickListener() {
