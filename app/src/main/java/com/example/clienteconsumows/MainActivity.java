@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnComunicar, btnRegresar;
     TextView tvRespuesta;
-    String respuesta = "";
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -35,12 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
         btnComunicar = findViewById(R.id.btnComunicar);
         tvRespuesta = findViewById(R.id.tvRespuesta);
-        btnRegresar = findViewById(R.id.btnRegresarSuma);
+        btnRegresar = findViewById(R.id.btnRegresar);
 
+        VariableGlobal app = (VariableGlobal) getApplicationContext();
         btnComunicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ConsumirWS();
+                ConsumirWS(app.getIP());
             }
         });
         btnRegresar.setOnClickListener(new View.OnClickListener() {
@@ -51,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void ConsumirWS() {
-        String url = "http://192.168.1.11:3000/nombre";
+    public void ConsumirWS(String IP) {
+        String url = "http://"+IP+":3000/nombre";
         OkHttpClient cliente = new OkHttpClient();
         Request get = new Request.Builder()
                 .url(url)

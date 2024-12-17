@@ -10,13 +10,13 @@
         android:id="@+id/btnComunicar"
         android:layout_width="136dp"
         android:layout_height="57dp"
-        android:text="Solicitar"
+        android:text="Sumar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.167" />
+        app:layout_constraintVertical_bias="0.324" />
 
     <Button
         android:id="@+id/btnRegresar"
@@ -35,8 +35,8 @@
 
     <TextView
         android:id="@+id/tvRespuesta"
-        android:layout_width="231dp"
-        android:layout_height="266dp"
+        android:layout_width="167dp"
+        android:layout_height="202dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,22 +45,22 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="121dp"
-        android:layout_height="30dp"
-        android:text="Respuesta: "
+        android:layout_width="177dp"
+        android:layout_height="45dp"
+        android:text="Ingresa un numero al cual se le sumara 3:"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.285" />
+        app:layout_constraintVertical_bias="0.139" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="244dp"
         android:layout_height="35dp"
-        android:text="Biografia"
+        android:text="Suma con Parametros"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,5 +69,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.058" />
+
+    <EditText
+        android:id="@+id/edNum1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="@string/vacio"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.233" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

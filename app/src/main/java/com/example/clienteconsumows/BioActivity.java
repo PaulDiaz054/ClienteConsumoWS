@@ -20,19 +20,22 @@ public class BioActivity extends AppCompatActivity {
 
     Button btnComunicar, btnRegresar;
     TextView tvRespuesta;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bio);
 
         btnComunicar = findViewById(R.id.btnComunicar);
-        btnRegresar = findViewById(R.id.btnRegresarSuma);
+        btnRegresar = findViewById(R.id.btnRegresar);
         tvRespuesta = findViewById(R.id.tvRespuesta);
+        VariableGlobal app = (VariableGlobal) getApplicationContext();
 
         btnComunicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ConsumirWS();
+                ConsumirWS(app.getIP());
             }
         });
 
@@ -44,8 +47,8 @@ public class BioActivity extends AppCompatActivity {
         });
     }
 
-    public void ConsumirWS() {
-        String url = "http://192.168.1.11:3000/Paul";
+    public void ConsumirWS(String IP) {
+        String url = "http://"+ IP +":3000/Paul";
         OkHttpClient cliente = new OkHttpClient();
         Request get = new Request.Builder()
                 .url(url)

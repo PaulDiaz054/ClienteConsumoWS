@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -17,21 +18,31 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public class SumaActivity extends AppCompatActivity {
+public class SumaParActivity extends AppCompatActivity {
 
     Button btnComunicar, btnRegresar;
     TextView tvRespuesta;
+    EditText edNum1;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_suma);
+        setContentView(R.layout.activity_suma_par);
 
         btnComunicar = findViewById(R.id.btnComunicar);
         btnRegresar = findViewById(R.id.btnRegresar);
         tvRespuesta = findViewById(R.id.tvRespuesta);
+        edNum1 = findViewById(R.id.edNum1);
 
         VariableGlobal app = (VariableGlobal) getApplicationContext();
+
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         btnComunicar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,16 +50,10 @@ public class SumaActivity extends AppCompatActivity {
                 ConsumirWS(app.getIP());
             }
         });
-        btnRegresar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
 
     public void ConsumirWS(String IP) {
-        String url = "http://"+IP+":3000/suma";
+        String url = "http://"+IP+":3000/suma/" + edNum1.getText();
         OkHttpClient cliente = new OkHttpClient();
         Request get = new Request.Builder()
                 .url(url)
@@ -58,7 +63,7 @@ public class SumaActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
-                SumaActivity.this.runOnUiThread(() ->
+                SumaParActivity.this.runOnUiThread(() ->
                         tvRespuesta.setText("Error al conectar con el servidor: " + e.toString())
                 );
             }
@@ -71,13 +76,13 @@ public class SumaActivity extends AppCompatActivity {
                     } else {
                         String respuesta = responseBody.string();
 
-                        SumaActivity.this.runOnUiThread(() -> {
+                        SumaParActivity.this.runOnUiThread(() -> {
                             tvRespuesta.setText(respuesta);
                         });
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    SumaActivity.this.runOnUiThread(() ->
+                    SumaParActivity.this.runOnUiThread(() ->
                             tvRespuesta.setText("Error al procesar la respuesta del servidor")
                     );
                 }
