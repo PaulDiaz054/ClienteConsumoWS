@@ -53,6 +53,13 @@ public class Menu extends AppCompatActivity {
                 CambiarPantallas(SumaParActivity.class);
             }
         });
+
+        btnRectangulo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CambiarPantallas(RectanguloActivity.class);
+            }
+        });
     }
     public void CambiarPantallas( Class<?> targetActivity) {
         Intent intent = new Intent(Menu.this, targetActivity);
