@@ -18,32 +18,25 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public class RectanguloActivity extends AppCompatActivity {
+public class PentagonoActivity extends AppCompatActivity {
 
     Button btnComunicar, btnRegresar;
-    EditText edBase, edAltura;
+    EditText edLado, edApotema;
     TextView tvRespuesta;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rectangulo);
+        setContentView(R.layout.activity_pentagono);
 
         btnComunicar = findViewById(R.id.btnComunicar);
-        tvRespuesta = findViewById(R.id.tvRespuesta);
         btnRegresar = findViewById(R.id.btnRegresar);
-        edAltura = findViewById(R.id.edApotema);
-        edBase = findViewById(R.id.edLado);
+        edLado = findViewById(R.id.edLado);
+        edApotema = findViewById(R.id.edApotema);
+        tvRespuesta = findViewById(R.id.tvRespuesta);
 
         VariableGlobal app = (VariableGlobal) getApplicationContext();
-
-        btnComunicar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ConsumirWS(app.getIP());
-            }
-        });
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,10 +44,17 @@ public class RectanguloActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnComunicar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ConsumirWS(app.getIP());
+            }
+        });
     }
 
     public void ConsumirWS(String IP) {
-        String url = "http://"+IP+":3000/Rectangulo/"+ edBase.getText() + "&" + edAltura.getText();
+        String url = "http://"+IP+":3000/Pentagono/"+ edLado.getText() + "&" + edApotema.getText();
         OkHttpClient cliente = new OkHttpClient();
         Request get = new Request.Builder()
                 .url(url)
@@ -64,7 +64,7 @@ public class RectanguloActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
-                RectanguloActivity.this.runOnUiThread(() ->
+                PentagonoActivity.this.runOnUiThread(() ->
                         tvRespuesta.setText("Error al conectar con el servidor: " + e.toString())
                 );
             }
@@ -77,13 +77,13 @@ public class RectanguloActivity extends AppCompatActivity {
                     } else {
                         String respuesta = responseBody.string();
 
-                        RectanguloActivity.this.runOnUiThread(() -> {
+                        PentagonoActivity.this.runOnUiThread(() -> {
                             tvRespuesta.setText(respuesta);
                         });
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    RectanguloActivity.this.runOnUiThread(() ->
+                    PentagonoActivity.this.runOnUiThread(() ->
                             tvRespuesta.setText("Error al procesar la respuesta del servidor")
                     );
                 }
