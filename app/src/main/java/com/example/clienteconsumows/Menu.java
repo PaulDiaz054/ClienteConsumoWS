@@ -67,6 +67,13 @@ public class Menu extends AppCompatActivity {
                 CambiarPantallas(PentagonoActivity.class);
             }
         });
+
+        btnRombo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CambiarPantallas(RomboActivity.class);
+            }
+        });
     }
     public void CambiarPantallas( Class<?> targetActivity) {
         Intent intent = new Intent(Menu.this, targetActivity);
