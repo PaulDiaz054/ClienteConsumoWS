@@ -33,8 +33,8 @@ public class RectanguloActivity extends AppCompatActivity {
         btnComunicar = findViewById(R.id.btnComunicar);
         tvRespuesta = findViewById(R.id.tvRespuesta);
         btnRegresar = findViewById(R.id.btnRegresar);
-        edAltura = findViewById(R.id.edApotema);
-        edBase = findViewById(R.id.edLado);
+        edAltura = findViewById(R.id.edB);
+        edBase = findViewById(R.id.edA);
 
         VariableGlobal app = (VariableGlobal) getApplicationContext();
 

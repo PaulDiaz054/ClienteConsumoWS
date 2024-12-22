@@ -2,7 +2,6 @@ package com.example.clienteconsumows;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,32 +17,23 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public class PentagonoActivity extends AppCompatActivity {
+public class TrinomioActivity extends AppCompatActivity {
 
-    Button btnComunicar, btnRegresar;
-    EditText edLado, edApotema;
+    Button btnRegresar, btnComunicar;
+    EditText edA, edB;
     TextView tvRespuesta;
-
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pentagono);
+        setContentView(R.layout.activity_trinomio);
 
         btnComunicar = findViewById(R.id.btnComunicar);
         btnRegresar = findViewById(R.id.btnRegresar);
-        edLado = findViewById(R.id.edA);
-        edApotema = findViewById(R.id.edB);
+        edA = findViewById(R.id.edA);
+        edB = findViewById(R.id.edB);
         tvRespuesta = findViewById(R.id.tvRespuesta);
 
         VariableGlobal app = (VariableGlobal) getApplicationContext();
-
-        btnRegresar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
         btnComunicar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,10 +41,17 @@ public class PentagonoActivity extends AppCompatActivity {
                 ConsumirWS(app.getIP());
             }
         });
+
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     public void ConsumirWS(String IP) {
-        String url = "http://"+IP+":3000/Pentagono/"+ edLado.getText() + "&" + edApotema.getText();
+        String url = "http://"+IP+":3000/trinomio/"+ edA.getText() + "&" + edB.getText();
         OkHttpClient cliente = new OkHttpClient();
         Request get = new Request.Builder()
                 .url(url)
@@ -64,7 +61,7 @@ public class PentagonoActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
-                PentagonoActivity.this.runOnUiThread(() ->
+                TrinomioActivity.this.runOnUiThread(() ->
                         tvRespuesta.setText("Error al conectar con el servidor: " + e.toString())
                 );
             }
@@ -77,13 +74,13 @@ public class PentagonoActivity extends AppCompatActivity {
                     } else {
                         String respuesta = responseBody.string();
 
-                        PentagonoActivity.this.runOnUiThread(() -> {
+                        TrinomioActivity.this.runOnUiThread(() -> {
                             tvRespuesta.setText(respuesta);
                         });
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    PentagonoActivity.this.runOnUiThread(() ->
+                    TrinomioActivity.this.runOnUiThread(() ->
                             tvRespuesta.setText("Error al procesar la respuesta del servidor")
                     );
                 }

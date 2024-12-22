@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class Menu extends AppCompatActivity {
 
-    Button btnJson, btnBio, btnSuma, btnSumaPar, btnRectangulo, btnPentagono, btnRombo;
+    Button btnJson, btnBio, btnSuma, btnSumaPar, btnRectangulo, btnPentagono, btnRombo, btnTrinomio;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class Menu extends AppCompatActivity {
         btnRectangulo = findViewById(R.id.btnRectangulo);
         btnPentagono = findViewById(R.id.btnPentagono);
         btnRombo = findViewById(R.id.btnRombo);
+        btnTrinomio = findViewById(R.id.btnTrinomio);
 
         btnBio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +73,13 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CambiarPantallas(RomboActivity.class);
+            }
+        });
+
+        btnTrinomio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CambiarPantallas(TrinomioActivity.class);
             }
         });
     }
